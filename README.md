@@ -26,13 +26,14 @@ Get shop category from *shop_name* column and process shop city.
 5. Process complete dataframe (*stage_1_preprocessing/preprocess_complete_dataframe.py*)  
     * create a dataframe with 34 days and for each day we have the Cartesian product of all shop_id and item_id. We call this dataframe **complete**
     * group train data by day, shop id and item_id and join this dataframe with complete dataframe
-    * 
 
-It creates new files in *processed_data* directory:
+As a result we have new files in *processed_data* directory:
 * item_categories_preprocessed.csv
 * sales_train_preprocessed.csv
 * test_preprocessed.csv
 * items_preprocessed.csv
 * shops_preprocessed.csv  
+* complete_dataframe.csv  
 
-## 2. 
+## 2. Feature Engineering.
+

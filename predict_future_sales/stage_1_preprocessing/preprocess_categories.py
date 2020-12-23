@@ -17,7 +17,7 @@ def categories_preprocess():
     categories['type'] = categories.type.apply(lambda x: x if (x in valid_category) else 'etc')
     categories['type_code'] = LabelEncoder().fit_transform(categories['type'])
 
-    categories['split'] = categories.item_category_name.apply(lambda x: x.split('-'))
+    categories['split'] = categories['item_category_name'].apply(lambda x: x.split('-'))
     categories['subtype'] = categories['split'].map(lambda x: x[1].strip() if len(x) > 1 else x[0].strip())
     categories['subtype_code'] = LabelEncoder().fit_transform(categories['subtype'])
 

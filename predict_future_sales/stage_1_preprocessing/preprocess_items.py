@@ -11,8 +11,8 @@ PATH_TO_SAVE_PROCESSED_DATA = './processed_data'
 def items_preprocess():
     items = pd.read_csv(os.path.join(PATH_TO_DATA, 'items.csv'))
 
-    items['name_1'], items['name_2'] = items['item_name'].str.split('[', 1).str
-    items['name_1'], items['name_3'] = items['item_name'].str.split('(', 1).str
+    _, items['name_2'] = items['item_name'].str.split('[', 1).str
+    _, items['name_3'] = items['item_name'].str.split('(', 1).str
 
     items['name_2'] = items['name_2'].str.replace('[^A-Za-z0-9А-Яа-я]+', ' ').str.lower()
     items['name_3'] = items['name_3'].str.replace('[^A-Za-z0-9А-Яа-я]+', ' ').str.lower()
@@ -28,7 +28,7 @@ def items_preprocess():
         return x
 
     items['item_name'] = items['item_name'].apply(lambda x: name_correction(x))
-    items.name_2 = items.name_2.apply(lambda x: x[:-1] if x != '0' else '0')
+    items['name_2'] = items.name_2.apply(lambda x: x[:-1] if x != '0' else '0')
 
     items['type'] = items.name_2.apply(lambda x: x[0:8] if x.split(' ')[0] == 'xbox' else x.split(' ')[0])
     items.loc[(items.type == 'x360') | (items.type == 'xbox360'), 'type'] = 'xbox 360'
@@ -45,5 +45,5 @@ def items_preprocess():
 
     items['name_2'] = LabelEncoder().fit_transform(items['name_2'])
     items['name_3'] = LabelEncoder().fit_transform(items['name_3'])
-    items.drop(['item_name', 'name_1'], axis=1, inplace=True)
+    items.drop(['item_name'], axis=1, inplace=True)
     items.to_csv(os.path.join(PATH_TO_SAVE_PROCESSED_DATA, 'items_preprocessed.csv'), index=False)

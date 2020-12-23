@@ -1,7 +1,7 @@
 PROJECT_PATH = $(shell pwd)
 PROJECT_NAME = predict_future_sales
 
-LOCAL_DATA = /Users/dgizdatullin/Kaggle/competitive_data_science_predict_future_sales/data/
+LOCAL_DATA = /home/danil/projects/courses/how_to_win_kaggle/data
 MOUNT_DIR_DATA = $(LOCAL_DATA):/var/www/predict_future_sales/data
 
 LOCAL_MAIN_PATH = $(PROJECT_PATH)/predict_future_sales
