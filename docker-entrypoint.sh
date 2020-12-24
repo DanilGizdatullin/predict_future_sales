@@ -7,4 +7,7 @@ case "$1" in
   process_data)
     python predict_future_sales/stage_1_preprocessing/run_process_data.py
     ;;
+  feature_engineering)
+    python predict_future_sales/stage_2_feature_engineering/run_feature_engineering.py
+    ;;
 esac

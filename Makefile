@@ -21,3 +21,10 @@ process_data:
 	-v $(MOUNT_DIR_PROCESSED_DATA) \
 	-v $(MOUNT_DIR_DATA) \
 	$(PROJECT_NAME) process_data
+
+feature_engineering:
+	docker run --rm --name $(CONTAINER_NAME) \
+	-v $(MOUNT_DIR_MAIN) \
+	-v $(MOUNT_DIR_PROCESSED_DATA) \
+	-v $(MOUNT_DIR_DATA) \
+	$(PROJECT_NAME) feature_engineering
