@@ -10,4 +10,7 @@ case "$1" in
   feature_engineering)
     python predict_future_sales/stage_2_feature_engineering/run_feature_engineering.py
     ;;
+  train_validation_test_split)
+    python predict_future_sales/stage_3_train_validation_test_split/run_train_validation_test_split.py
+    ;;
 esac

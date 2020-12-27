@@ -73,7 +73,7 @@ python predict_future_sales/stage_2_feature_engineering/run_feature_engineering.
    * Add lag features for average month item price (average item price for the previous three months)
    * Add 'delta_price_lag' price from previous (one, two, three months, it depends on which month data is accessible) minus global mean item price and divide it by global mean item price
    * Add delta shop revenue for the previous three months:
-      * Revenue is 'item_price' multiply by 'item_cnt_day'
+      * Revenue is 'item_price' multily by 'item_cnt_day'
       * Then we get 'date_shop_revenue' is a sum revenue of each shop by one month
       * Then we compute 'shop_avg_revenue' is an average revenue for each shop by whole dataset
       * We can compute 'delta_revenue' by this formula ('date_shop_revenue' - 'shop_avg_revenue') 'shop_avg_revenue'
@@ -84,3 +84,18 @@ python predict_future_sales/stage_2_feature_engineering/run_feature_engineering.
    * Add number of days in each month ('days' column)
    * Add 'item_shop_first_sale' - how long months ago first sale of current item in current shop was made
    * Add 'item_first_sale' -  how long months ago first sale of current item was made
+  
+As a result we have new file in *processed_data* directory:
+* complete_dataframe_with_features.csv  
+
+## 3. Train, Validation and Test Split.
+In this step we divide *complete_dataframe_with_features.csv* into 2 different groups of data:
+1. *train - validation - test* - this group consists of:
+   * Train data (x_train.npy, y_train.npy 'date_block_num' from 4 to 31) which will be used to train our models
+   * Validation data (x_valid.npy, y_valid.npy 'date_block_num' equal to 32) which will be used to find optimal hyper-parameters
+   * Test data (x_test.npy, y_test.npy 'date_block_num' equal to 33) which will be used to evaluate models
+   
+2. *train - test* - this group consists of:
+   * Train data (x_train.npy, y_train.npy 'date_block_num' from 4 to 33) which will be used to train models for final prediction
+   * Test data (x_test.npy 'date_block_num' equal to 34) which will be used to make a final prediction and result submission
+   
