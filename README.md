@@ -89,6 +89,13 @@ As a result we have new file in *processed_data* directory:
 * complete_dataframe_with_features.csv  
 
 ## 3. Train, Validation and Test Split.
+```bash
+make train_valid_test_split
+```
+or
+```bash
+python predict_future_sales/stage_3_train_validation_test_split/run_train_validation_test_split.py
+```
 In this step we divide *complete_dataframe_with_features.csv* into 2 different groups of data:
 1. *train - validation - test* - this group consists of:
    * Train data (x_train.npy, y_train.npy 'date_block_num' from 4 to 31) which will be used to train our models
